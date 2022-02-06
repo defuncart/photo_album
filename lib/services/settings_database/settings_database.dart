@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:photo_album/services/settings_database/i_settings_database.dart';
 
 class SettingsDatabase implements ISettingsDatabase {
+  SettingsDatabase({
+    HiveInterface? hive,
+  }) : _hive = hive ?? Hive;
+
+  final HiveInterface _hive;
+
   /// A box to store objects
   late Box<dynamic> _box;
 
@@ -23,12 +28,7 @@ class SettingsDatabase implements ISettingsDatabase {
   set language(String? value) => _box.put(_Keys.language, value);
 
   @override
-  Future<void> initialize() async {
-    final dir = await getApplicationDocumentsDirectory();
-    Hive.init(dir.path);
-
-    _box = await Hive.openBox<dynamic>(_boxName);
-  }
+  Future<void> initialize() => _hive.openBox<dynamic>(_boxName);
 
   @override
   Future<void> reset() => _box.deleteAll(_box.keys);
