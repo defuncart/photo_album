@@ -3,6 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
+import 'package:photo_album/services/hive/hive_manager.dart';
+import 'package:photo_album/services/settings_database/i_settings_database.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 export 'mocks.mocks.dart';
@@ -10,6 +12,8 @@ export 'mocks.mocks.dart';
 @GenerateMocks([
   HiveInterface,
   Box,
+  HiveManager,
+  ISettingsDatabase,
 ])
 void main() {}
 

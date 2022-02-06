@@ -5,10 +5,14 @@
 import 'dart:async' as _i3;
 import 'dart:typed_data' as _i6;
 
+import 'package:flutter/material.dart' as _i9;
 import 'package:hive/hive.dart' as _i2;
 import 'package:hive/src/box/default_compaction_strategy.dart' as _i5;
 import 'package:hive/src/box/default_key_comparator.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:photo_album/services/hive/hive_manager.dart' as _i7;
+import 'package:photo_album/services/settings_database/i_settings_database.dart'
+    as _i8;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -252,6 +256,52 @@ class MockBox<E> extends _i1.Mock implements _i2.Box<E> {
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
   _i3.Future<void> flush() => (super.noSuchMethod(Invocation.method(#flush, []),
+      returnValue: Future<void>.value(),
+      returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+}
+
+/// A class which mocks [HiveManager].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHiveManager extends _i1.Mock implements _i7.HiveManager {
+  MockHiveManager() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> initialize() =>
+      (super.noSuchMethod(Invocation.method(#initialize, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+}
+
+/// A class which mocks [ISettingsDatabase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockISettingsDatabase extends _i1.Mock implements _i8.ISettingsDatabase {
+  MockISettingsDatabase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i9.ThemeMode get themeMode =>
+      (super.noSuchMethod(Invocation.getter(#themeMode),
+          returnValue: _i9.ThemeMode.system) as _i9.ThemeMode);
+  @override
+  set themeMode(_i9.ThemeMode? value) =>
+      super.noSuchMethod(Invocation.setter(#themeMode, value),
+          returnValueForMissingStub: null);
+  @override
+  set language(String? value) =>
+      super.noSuchMethod(Invocation.setter(#language, value),
+          returnValueForMissingStub: null);
+  @override
+  _i3.Future<void> initialize() =>
+      (super.noSuchMethod(Invocation.method(#initialize, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+  @override
+  _i3.Future<void> reset() => (super.noSuchMethod(Invocation.method(#reset, []),
       returnValue: Future<void>.value(),
       returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
 }
