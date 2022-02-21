@@ -60,8 +60,8 @@ void main() {
       });
 
       test('themeMode', () async {
-        const defaultThemMode = ThemeMode.system;
-        expect(settingsDatabase.themeMode, defaultThemMode);
+        const defaultThemeMode = ThemeMode.system;
+        expect(settingsDatabase.themeMode, defaultThemeMode);
 
         settingsDatabase.themeMode = ThemeMode.dark;
 
@@ -69,7 +69,7 @@ void main() {
 
         await settingsDatabase.reset();
 
-        expect(settingsDatabase.themeMode, defaultThemMode);
+        expect(settingsDatabase.themeMode, defaultThemeMode);
       }, onPlatform: {
         'windows': const Skip('Not supported on windows'),
       });

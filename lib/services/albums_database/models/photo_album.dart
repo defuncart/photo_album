@@ -9,8 +9,8 @@ class PhotoAlbum extends HiveObject {
   PhotoAlbum({
     required this.id,
     required this.name,
-    this.photoPaths = const [],
-  });
+    List<String> photoPaths = const [],
+  }) : _photoPaths = photoPaths;
 
   @HiveField(0)
   final String id;
@@ -19,23 +19,24 @@ class PhotoAlbum extends HiveObject {
   String name;
 
   @HiveField(2)
-  List<String> photoPaths;
+  final List<String> _photoPaths;
+  List<String> get photoPaths => _photoPaths;
 
   void addPhoto(String photoPath) {
-    if (photoPaths.contains(photoPath)) {
+    if (_photoPaths.contains(photoPath)) {
       throw ArgumentError('$PhotoAlbum already contains $photoPath');
     }
 
-    photoPaths.add(photoPath);
+    _photoPaths.add(photoPath);
     save();
   }
 
   void removePhoto(String photoPath) {
-    if (!photoPaths.contains(photoPath)) {
+    if (!_photoPaths.contains(photoPath)) {
       throw ArgumentError('$PhotoAlbum does not contain $photoPath');
     }
 
-    photoPaths.remove(photoPath);
+    _photoPaths.remove(photoPath);
     save();
   }
 }
