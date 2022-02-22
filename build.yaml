@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      mockito|mockBuilder:
+        enabled: true
+        generate_for:
+          include:
+            - test/mocks.dart
+      hive_generator:
+        enabled: true
+        generate_for:
+          include:
+            - lib/services/*/models/*.dart
