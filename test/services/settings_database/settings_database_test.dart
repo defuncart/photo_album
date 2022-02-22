@@ -70,6 +70,8 @@ void main() {
         await settingsDatabase.reset();
 
         expect(settingsDatabase.themeMode, defaultThemMode);
+      }, onPlatform: {
+        'windows': const Skip('Not supported on windows'),
       });
 
       test('language', () async {
@@ -84,6 +86,8 @@ void main() {
         await settingsDatabase.reset();
 
         expect(settingsDatabase.language, defaultValue);
+      }, onPlatform: {
+        'windows': const Skip('Not supported on windows'),
       });
     });
   });
