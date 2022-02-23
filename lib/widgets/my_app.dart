@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_album/design_system/themes/adaptive_platform.dart';
 import 'package:photo_album/design_system/widgets/adaptive_app.dart';
-import 'package:photo_album/design_system/widgets/adaptive_radio_button_group.dart';
-import 'package:photo_album/generated/l10n.dart';
 import 'package:photo_album/state/state.dart';
+import 'package:photo_album/widgets/home_screen/home_screen.dart';
 
 class MyApp extends ConsumerStatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -58,7 +57,7 @@ class MyAppContent extends ConsumerStatefulWidget {
 }
 
 class __MyAppState extends ConsumerState<MyAppContent> {
-  var _platform = PlatformType.windows;
+  var _platform = PlatformType.system;
   late ThemeMode _themeMode;
 
   @override
@@ -74,36 +73,7 @@ class __MyAppState extends ConsumerState<MyAppContent> {
       platform: _platform,
       child: AdaptiveApp(
         themeMode: _themeMode,
-        child: Builder(builder: (context) {
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(AppLocalizations.of(context).test),
-                const SizedBox(height: 8),
-                AdaptiveRadioButtonGroup(
-                  items: PlatformType.values.map((e) => RadioButtonItem(value: e, label: describeEnum(e))).toList(),
-                  selectedValue: _platform,
-                  onChanged: (value) => setState(() => _platform = value),
-                ),
-                const SizedBox(height: 8),
-                AdaptiveRadioButtonGroup(
-                  items: ThemeMode.values
-                      .map((mode) => RadioButtonItem(
-                            value: mode,
-                            label: describeEnum(mode),
-                          ))
-                      .toList(),
-                  selectedValue: _themeMode,
-                  onChanged: (value) {
-                    ref.read(settingsDatabaseProvider).themeMode = value;
-                    setState(() => _themeMode = value);
-                  },
-                ),
-              ],
-            ),
-          );
-        }),
+        home: const HomeScreen(),
       ),
     );
   }
