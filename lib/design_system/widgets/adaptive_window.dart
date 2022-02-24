@@ -5,6 +5,8 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:photo_album/design_system/models/sidebar_item_model.dart';
 import 'package:photo_album/design_system/themes/adaptive_platform.dart';
 import 'package:photo_album/generated/l10n.dart';
+import 'package:yaru_icons/yaru_icons.dart';
+import 'package:yaru_widgets/yaru_widgets.dart';
 
 class AdaptiveWindow extends StatefulWidget {
   const AdaptiveWindow({
@@ -48,7 +50,7 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
               items: [
                 for (final item in widget.sidebarItems)
                   SidebarItem(
-                    leading: Icon(item.icon),
+                    leading: const MacosIcon(CupertinoIcons.photo),
                     label: Text(
                       item.label,
                       style: TextStyle(
@@ -82,14 +84,43 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
         child: _isSettingsActive ? widget.settingsBuilder(context) : widget.sidebarItemBuilder(_currentIndex),
       );
     } else if (adaptivePlatform.isLinux) {
-      return Scaffold(
-        body: _isSettingsActive ? widget.settingsBuilder(context) : widget.sidebarItemBuilder(_currentIndex),
+      return YaruMasterDetailPage(
+        leftPaneWidth: 280,
+        pageItems: [
+          for (final item in widget.sidebarItems)
+            YaruPageItem(
+              iconData: YaruIcons.camera_photo_filed,
+              titleBuilder: (context) => Text(
+                item.label,
+              ),
+              builder: (context) => widget.sidebarItemBuilder(_currentIndex),
+            ),
+          YaruPageItem(
+            iconData: YaruIcons.settings_filled,
+            titleBuilder: (context) => Text(
+              'Settings',
+            ),
+            builder: (context) => widget.settingsBuilder(context),
+          ),
+        ],
+        appBar: AppBar(
+          title: Text('Photo Album'),
+        ),
       );
     } else {
       return NavigationView(
         pane: NavigationPane(
-          selected: 0,
-          onChanged: print,
+          selected: _isSettingsActive ? widget.sidebarItems.length : _currentIndex,
+          onChanged: (index) {
+            setState(() {
+              if (index == widget.sidebarItems.length) {
+                _isSettingsActive = true;
+              } else {
+                _currentIndex = index;
+                _isSettingsActive = false;
+              }
+            });
+          },
           size: const NavigationPaneSize(
             openMinWidth: 200,
             openMaxWidth: 200,
@@ -103,14 +134,13 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
           ),
           displayMode: PaneDisplayMode.open,
           items: [
-            PaneItem(
-              icon: const Icon(FluentIcons.photo2),
-              title: const Text('My Album'),
-            ),
-            PaneItem(
-              icon: const Icon(FluentIcons.photo),
-              title: const Text('Flutter'),
-            ),
+            for (final item in widget.sidebarItems)
+              PaneItem(
+                icon: const Icon(FluentIcons.album),
+                title: Text(
+                  item.label,
+                ),
+              ),
           ],
           footerItems: [
             PaneItemSeparator(),
