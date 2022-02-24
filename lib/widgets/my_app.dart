@@ -49,30 +49,18 @@ class LoadingWidget extends StatelessWidget {
 }
 
 @visibleForTesting
-class MyAppContent extends ConsumerStatefulWidget {
+class MyAppContent extends ConsumerWidget {
   const MyAppContent({Key? key}) : super(key: key);
 
   @override
-  __MyAppState createState() => __MyAppState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeModeProvider);
+    final platformType = ref.watch(platformTypeProvider);
 
-class __MyAppState extends ConsumerState<MyAppContent> {
-  var _platform = PlatformType.system;
-  late ThemeMode _themeMode;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _themeMode = ref.read(settingsDatabaseProvider).themeMode;
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return AdaptivePlatform(
-      platform: _platform,
+      platform: platformType,
       child: AdaptiveApp(
-        themeMode: _themeMode,
+        themeMode: themeMode,
         home: const HomeScreen(),
       ),
     );
