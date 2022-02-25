@@ -2,6 +2,8 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/foundation.dart';
 
 /// DE strings for the fluent widgets.
+///
+/// Taken from DefaultFluentLocalizations
 class FluentLocalizationsDE implements FluentLocalizations {
   const FluentLocalizationsDE();
 
@@ -39,16 +41,16 @@ class FluentLocalizationsDE implements FluentLocalizations {
   String get dialogLabel => 'Dialog';
 
   @override
-  String get cutButtonLabel => 'Cut';
+  String get cutActionLabel => 'Cut';
 
   @override
-  String get copyButtonLabel => 'Copy';
+  String get copyActionLabel => 'Copy';
 
   @override
-  String get pasteButtonLabel => 'Paste';
+  String get pasteActionLabel => 'Paste';
 
   @override
-  String get selectAllButtonLabel => 'Select all';
+  String get selectAllActionLabel => 'Select all';
 
   @override
   String get newTabLabel => 'Add new tab';
@@ -65,13 +67,44 @@ class FluentLocalizationsDE implements FluentLocalizations {
   @override
   String get noResultsFoundLabel => 'No results found';
 
-  /// Creates an object that provides US English resource values for the material
+  String get _ctrlCmd {
+    if (defaultTargetPlatform == TargetPlatform.macOS) {
+      return 'Cmd';
+    }
+    return 'Ctrl';
+  }
+
+  @override
+  String get cutShortcut => '$_ctrlCmd+X';
+
+  @override
+  String get copyShortcut => '$_ctrlCmd+C';
+
+  @override
+  String get pasteShortcut => '$_ctrlCmd+V';
+
+  @override
+  String get selectAllShortcut => '$_ctrlCmd+A';
+
+  @override
+  String get copyActionTooltip => 'Copy the selected content to the clipboard';
+
+  @override
+  String get cutActionTooltip => 'Remove the selected content and put it in the clipboard';
+
+  @override
+  String get pasteActionTooltip => 'Inserts the contents of the clipboard at the current location';
+
+  @override
+  String get selectAllActionTooltip => 'Select all content';
+
+  /// Creates an object that provides US English resource values for the fluent
   /// library widgets.
   ///
   /// The [locale] parameter is ignored.
   ///
   /// This method is typically used to create a [LocalizationsDelegate].
-  /// The [MaterialApp] does so by default.
+  /// The [FluentApp] does so by default.
   static Future<FluentLocalizations> load(Locale locale) {
     return SynchronousFuture<FluentLocalizations>(const DefaultFluentLocalizations());
   }
