@@ -26,6 +26,7 @@ dependencies:
   path_provider:
   flutter_riverpod:
   gap:
+  desktop_drop:
 
 dev_dependencies:
   flutter_test:
