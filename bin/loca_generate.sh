@@ -12,7 +12,7 @@ dart run arb_generator
 dart pub global run arb_utils:sort assets_dev/l10n/intl_en.arb
 
 # generate localization delegates
-dart pub run intl_utils:generate
+dart run intl_utils:generate
 
 # format loca delegates
 dart format lib/generated
