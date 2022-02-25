@@ -2,11 +2,11 @@ import 'package:flutter/widgets.dart';
 
 class SidebarItemModel {
   const SidebarItemModel({
-    required this.icon,
+    this.icon,
     required this.label,
   });
 
-  final IconData icon;
+  final IconData? icon;
   final String label;
 
   SidebarItemModel copyWith({

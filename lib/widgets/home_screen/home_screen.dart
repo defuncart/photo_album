@@ -9,24 +9,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveWindow(
-      sidebarItems: const [
-        SidebarItemModel(
-          icon: Icons.abc,
-          label: 'abc',
-        ),
-        SidebarItemModel(
-          icon: Icons.abc,
-          label: 'xyz',
-        ),
-      ],
-      settingsItem: const SidebarItemModel(
-        icon: Icons.abc,
+    const sidebarItems = [
+      SidebarItemModel(
         label: 'abc',
       ),
-      sidebarItemBuilder: (index) => const AdaptivePage(
-        title: 'Sidebar',
-        child: Text('info'),
+      SidebarItemModel(
+        label: 'xyz',
+      ),
+    ];
+
+    return AdaptiveWindow(
+      sidebarItems: sidebarItems,
+      sidebarItemBuilder: (index) => AdaptivePage(
+        title: sidebarItems[index].label,
+        child: const Text('info'),
       ),
       settingsBuilder: (context) => const SettingsPage(),
     );

@@ -11,14 +11,12 @@ import 'package:yaru_widgets/yaru_widgets.dart';
 class AdaptiveWindow extends StatefulWidget {
   const AdaptiveWindow({
     required this.sidebarItems,
-    required this.settingsItem,
     required this.sidebarItemBuilder,
     required this.settingsBuilder,
     Key? key,
   }) : super(key: key);
 
   final List<SidebarItemModel> sidebarItems;
-  final SidebarItemModel settingsItem;
   final Widget Function(int) sidebarItemBuilder;
   final WidgetBuilder settingsBuilder;
 
@@ -61,7 +59,7 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
               ],
             );
           },
-          minWidth: 200,
+          minWidth: 220,
           bottom: Container(
             margin: const EdgeInsets.symmetric(horizontal: 12),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
@@ -72,7 +70,7 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
             child: MacosListTile(
               leading: const MacosIcon(CupertinoIcons.settings),
               title: Text(
-                'Settings',
+                AppLocalizations.of(context).generalSettings,
                 style: TextStyle(
                   color: MacosTheme.of(context).typography.body.color,
                 ),
@@ -85,7 +83,7 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
       );
     } else if (adaptivePlatform.isLinux) {
       return YaruMasterDetailPage(
-        leftPaneWidth: 280,
+        leftPaneWidth: 220,
         pageItems: [
           for (final item in widget.sidebarItems)
             YaruPageItem(
@@ -98,13 +96,13 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
           YaruPageItem(
             iconData: YaruIcons.settings_filled,
             titleBuilder: (context) => Text(
-              'Settings',
+              AppLocalizations.of(context).generalSettings,
             ),
             builder: (context) => widget.settingsBuilder(context),
           ),
         ],
         appBar: AppBar(
-          title: Text('Photo Album'),
+          title: Text(AppLocalizations.of(context).appTitle),
         ),
       );
     } else {
@@ -122,8 +120,8 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
             });
           },
           size: const NavigationPaneSize(
-            openMinWidth: 200,
-            openMaxWidth: 200,
+            openMinWidth: 220,
+            openMaxWidth: 220,
           ),
           header: Container(
             height: kOneLineTileHeight,
@@ -146,12 +144,17 @@ class _AdaptiveWindowState extends State<AdaptiveWindow> {
             PaneItemSeparator(),
             PaneItem(
               icon: const Icon(FluentIcons.settings),
-              title: const Text('Settings'),
+              title: Text(
+                AppLocalizations.of(context).generalSettings,
+              ),
             ),
           ],
         ),
         content: ScaffoldPage(
-          content: _isSettingsActive ? widget.settingsBuilder(context) : widget.sidebarItemBuilder(_currentIndex),
+          content: SizedBox(
+            width: double.infinity,
+            child: _isSettingsActive ? widget.settingsBuilder(context) : widget.sidebarItemBuilder(_currentIndex),
+          ),
         ),
       );
     }

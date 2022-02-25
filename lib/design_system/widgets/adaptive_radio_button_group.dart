@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:gap/gap.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:photo_album/design_system/themes/adaptive_platform.dart';
 
@@ -97,7 +98,7 @@ class AdaptiveRadioButton<T> extends StatelessWidget {
             onChanged: (_) => onChanged(),
             value: value,
           ),
-          const SizedBox(width: 8),
+          const Gap(8),
           Text(
             label,
           ),
