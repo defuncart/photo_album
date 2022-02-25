@@ -29,9 +29,7 @@ class AdaptivePage extends StatelessWidget {
       );
     } else if (adaptivePlatform.isLinux) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
+        // YaruMasterDetailPage automatically adds an AppBar
         body: child,
       );
     } else {
