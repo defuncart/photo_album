@@ -60,12 +60,32 @@ class AppLocalizations {
     );
   }
 
-  /// `Hello World!`
-  String get test {
+  /// `Settings`
+  String get generalSettings {
     return Intl.message(
-      'Hello World!',
-      name: 'test',
-      desc: 'A test key',
+      'Settings',
+      name: 'generalSettings',
+      desc: 'Settings',
+      args: [],
+    );
+  }
+
+  /// `Platform`
+  String get settingsPagePlatformTypeLabel {
+    return Intl.message(
+      'Platform',
+      name: 'settingsPagePlatformTypeLabel',
+      desc: 'A text label for platform setting',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get settingsPageThemeModeLabel {
+    return Intl.message(
+      'Theme',
+      name: 'settingsPageThemeModeLabel',
+      desc: 'A text label for platform setting',
       args: [],
     );
   }

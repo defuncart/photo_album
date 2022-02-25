@@ -1,3 +1,5 @@
 key;description;en;de
 appTitle;The app's title;Photo Album;Photo Album
-test;A test key;Hello World!;Hallo Welt!
+generalSettings;Settings;Settings;Einstellungen
+settingsPagePlatformTypeLabel;A text label for platform setting;Platform;Betriebssystem
+settingsPageThemeModeLabel;A text label for platform setting;Theme;Erscheinungsbild
