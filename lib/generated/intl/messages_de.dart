@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Photo Album"),
         "generalSettings":
             MessageLookupByLibrary.simpleMessage("Einstellungen"),
+        "photoAlbumPageEmptyStateLabel":
+            MessageLookupByLibrary.simpleMessage("Füge ein Bild ein"),
         "settingsPagePlatformTypeLabel":
             MessageLookupByLibrary.simpleMessage("Betriebssystem"),
         "settingsPageThemeModeLabel":

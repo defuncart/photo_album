@@ -3,3 +3,4 @@ appTitle;The app's title;Photo Album;Photo Album
 generalSettings;Settings;Settings;Einstellungen
 settingsPagePlatformTypeLabel;A text label for platform setting;Platform;Betriebssystem
 settingsPageThemeModeLabel;A text label for platform setting;Theme;Erscheinungsbild
+photoAlbumPageEmptyStateLabel;A text label when a photo album has no contents;Drop a photo or folder to add to album;Füge ein Bild ein

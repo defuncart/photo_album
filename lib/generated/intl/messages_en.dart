@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Photo Album"),
         "generalSettings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "photoAlbumPageEmptyStateLabel": MessageLookupByLibrary.simpleMessage(
+            "Drop a photo or folder to add to album"),
         "settingsPagePlatformTypeLabel":
             MessageLookupByLibrary.simpleMessage("Platform"),
         "settingsPageThemeModeLabel":
