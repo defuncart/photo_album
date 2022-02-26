@@ -7,7 +7,7 @@ import 'package:mime/mime.dart';
 class DropFileService {
   /// Returns a list of paths of images from a given list of files and/or folders
   ///
-  /// Note that recursive directories are not yet considered
+  /// Note that a recursion of depth 2 is supported
   Future<List<String>> filterImages(List<XFile> files) async {
     final validImages = <String>[];
     for (final file in files) {
@@ -27,15 +27,18 @@ class DropFileService {
   bool isImage(String path) => lookupMimeType(path)?.split('/').first == 'image';
 
   @visibleForTesting
-  Future<List<String>> imagesInDirectory(String path) async {
+  Future<List<String>> imagesInDirectory(String path, {int recursiveDepth = 0}) async {
     final validPaths = <String>[];
     final contents = await directoryContents(path);
     for (final entity in contents) {
-      // for now skip recursive directories
-      if (await FileSystemEntity.isFile(entity.path)) {
-        if (isImage(entity.path)) {
-          validPaths.add(entity.path);
+      if (await FileSystemEntity.isDirectory(entity.path)) {
+        if (recursiveDepth < 2) {
+          validPaths.addAll(await imagesInDirectory(entity.path, recursiveDepth: recursiveDepth + 1));
         }
+      }
+
+      if (isImage(entity.path)) {
+        validPaths.add(entity.path);
       }
     }
     return validPaths;
