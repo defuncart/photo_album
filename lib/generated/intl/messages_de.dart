@@ -23,6 +23,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appTitle": MessageLookupByLibrary.simpleMessage("Photo Album"),
-        "test": MessageLookupByLibrary.simpleMessage("Hallo Welt!")
+        "generalSettings":
+            MessageLookupByLibrary.simpleMessage("Einstellungen"),
+        "settingsPagePlatformTypeLabel":
+            MessageLookupByLibrary.simpleMessage("Betriebssystem"),
+        "settingsPageThemeModeLabel":
+            MessageLookupByLibrary.simpleMessage("Erscheinungsbild")
       };
 }

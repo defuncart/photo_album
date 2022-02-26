@@ -25,6 +25,7 @@ dependencies:
   path:
   path_provider:
   flutter_riverpod:
+  gap:
 
 dev_dependencies:
   flutter_test:

@@ -4,19 +4,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:photo_album/design_system/localizations/fluent_de.dart';
 import 'package:photo_album/design_system/themes/adaptive_platform.dart';
-import 'package:photo_album/design_system/widgets/adaptive_window.dart';
 import 'package:photo_album/generated/l10n.dart';
 import 'package:yaru/yaru.dart';
 
 class AdaptiveApp extends StatelessWidget {
   const AdaptiveApp({
     required this.themeMode,
-    required this.child,
+    required this.home,
     Key? key,
   }) : super(key: key);
 
   final ThemeMode themeMode;
-  final Widget child;
+  final Widget home;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,7 @@ class AdaptiveApp extends StatelessWidget {
         supportedLocales: AppLocalizations.delegate.supportedLocales,
         onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
         themeMode: themeMode,
-        home: AdaptiveWindow(
-          child: child,
-        ),
+        home: home,
       );
     } else if (adaptivePlatform.isLinux) {
       return material.MaterialApp(
@@ -49,9 +46,7 @@ class AdaptiveApp extends StatelessWidget {
         themeMode: themeMode,
         theme: yaruLight,
         darkTheme: yaruDark,
-        home: AdaptiveWindow(
-          child: child,
-        ),
+        home: home,
       );
     } else {
       var effectThemeMode = themeMode == ThemeMode.system
@@ -74,9 +69,7 @@ class AdaptiveApp extends StatelessWidget {
         themeMode: effectThemeMode,
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
-        builder: (context, __) => AdaptiveWindow(
-          child: child,
-        ),
+        builder: (context, __) => home,
       );
     }
   }
