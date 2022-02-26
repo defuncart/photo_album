@@ -64,6 +64,7 @@ class _PhotoAlbumPageState extends State<PhotoAlbumPage> {
                           path: _paths[i],
                           width: 200,
                           height: 125,
+                          onDelete: () => setState(() => _paths.removeAt(i)),
                         ),
                       ),
                   ],
