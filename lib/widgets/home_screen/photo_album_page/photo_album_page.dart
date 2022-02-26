@@ -23,6 +23,15 @@ class _PhotoAlbumPageState extends State<PhotoAlbumPage> {
   int? _draggedIndex;
 
   @override
+  void didUpdateWidget(covariant PhotoAlbumPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.photoAlbum != oldWidget.photoAlbum) {
+      _paths.clear();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AdaptivePage(
       title: widget.photoAlbum.name,
