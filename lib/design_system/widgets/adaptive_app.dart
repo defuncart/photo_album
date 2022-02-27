@@ -55,21 +55,25 @@ class AdaptiveApp extends StatelessWidget {
               : ThemeMode.light)
           : themeMode;
 
-      return FluentApp(
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          DefaultFluentLocalizations.delegate,
-          FluentLocalizationsDE.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.delegate.supportedLocales,
-        onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-        themeMode: effectThemeMode,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        builder: (context, __) => home,
+      // wrap FluentApp in MaterialApp to give access to Overlay
+      // this is needed for reorderables
+      return material.MaterialApp(
+        home: FluentApp(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            DefaultFluentLocalizations.delegate,
+            FluentLocalizationsDE.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.delegate.supportedLocales,
+          onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+          themeMode: effectThemeMode,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          builder: (context, __) => home,
+        ),
       );
     }
   }

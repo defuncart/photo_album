@@ -70,6 +70,16 @@ class AppLocalizations {
     );
   }
 
+  /// `Drop a photo or folder to add to album`
+  String get photoAlbumPageEmptyStateLabel {
+    return Intl.message(
+      'Drop a photo or folder to add to album',
+      name: 'photoAlbumPageEmptyStateLabel',
+      desc: 'A text label when a photo album has no contents',
+      args: [],
+    );
+  }
+
   /// `Platform`
   String get settingsPagePlatformTypeLabel {
     return Intl.message(

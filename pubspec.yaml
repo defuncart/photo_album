@@ -26,6 +26,8 @@ dependencies:
   path_provider:
   flutter_riverpod:
   gap:
+  desktop_drop:
+  reorderables:
 
 dev_dependencies:
   flutter_test:
